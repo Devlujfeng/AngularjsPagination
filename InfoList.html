@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="RequisitionApp">
+<head>
+  <meta charset="UTF-8">
+  <title>InfoList</title>
+  <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+  <link href="css/InfoList.css" rel='stylesheet' type='text/css' />
+<style>
+  #itemspan {
+    -ms-grid-row:2,
+    -ms-grid-column:1,
+    -ms-grid-column-span:2
+  }
+</style>
+</head>
+<body ng-controller="RequisitionController">
+<hgroup>
+  <h1>This InfoList Page</h1>
+</hgroup>
+<table class="table table-striped">
+<tr>
+  <td>SRNo</td>
+  <td>RequestDate</td>
+  <td>ShopName</td>
+  <td>Email</td>
+  <td>ContactNumber</td>
+</tr>
+<tr ng-repeat="record in pageContent">
+  <td>{{record.SRNo}}</td>
+  <td>{{record.RequestDate}}</td>
+  <td>{{record.ShopName}}</td>
+  <td>{{record.Email}}</td>
+  <td>{{record.ContactNumber}}</td>
+</tr>
+</table>
+<div class="text-center">
+<ul class="pagination">
+  <li><div class="PagePre" ng-click="PrePage()">-</div></li>
+  <li ng-repeat="index in pageUnderIndex"  ng-class="{active: index == currentPage}"  ng-click="GetRequisitionByIndex(this)"><a href="">{{index}}</a></li>
+  <li><div class="PageNext" ng-click="NextPage()">+</div></li>
+</ul>
+</div>
+<script src="js/angular.js"></script>
+<script src="js/InfoList.js"></script>
+</body>
+</html>
