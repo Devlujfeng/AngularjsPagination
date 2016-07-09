@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8811CD18-9FA2-43C9-AC14-887038AB45E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlertMessage.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetMaster.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Building.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyMaster.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDepartment.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FacadeLayer\RequisitionFacade.cs" />
+    <Compile Include="Floor.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FMDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FMDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FMDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FMDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FMDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryMaster.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemGroup.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MAContract.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MaintenanceTeam.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RequisitionEntity.cs" />
+    <Compile Include="Models\ServiceRequestEntity.cs" />
+    <Compile Include="Models\ShopEntity.cs" />
+    <Compile Include="Module.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModulePage.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRequest.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Shop.cs">
+      <DependentUpon>WestCoast.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShopInfo.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SRInvoice.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SRStatus.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\SqlHelper.cs" />
+    <Compile Include="UserActivities.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserLogin.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRoleAccess.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VendorMaster.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WestCoast.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WestCoast.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WestCoast.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WestCoast.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WestCoast.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WestCoast.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Zone.cs">
+      <DependentUpon>FMDB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="FMDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FMDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FMDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FMDB.edmx</DependentUpon>
+      <LastGenOutput>FMDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="FMDB.edmx.diagram">
+      <DependentUpon>FMDB.edmx</DependentUpon>
+    </None>
+    <None Include="FMDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FMDB.edmx</DependentUpon>
+      <LastGenOutput>FMDB.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="WestCoast.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WestCoast.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="WestCoast.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WestCoast.edmx</DependentUpon>
+      <LastGenOutput>WestCoast.Context.cs</LastGenOutput>
+    </None>
+    <None Include="WestCoast.edmx.diagram">
+      <DependentUpon>WestCoast.edmx</DependentUpon>
+    </None>
+    <None Include="WestCoast.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WestCoast.edmx</DependentUpon>
+      <LastGenOutput>WestCoast.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
