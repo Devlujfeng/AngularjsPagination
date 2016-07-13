@@ -7,6 +7,7 @@ using BLL.Models;
 using System.Data.SqlClient;
 using System.Data;
 using BLL.Tools;
+using System.Data.Entity.Validation;
 namespace BLL.FacadeLayer
 {
     public class RequisitionFacade
@@ -54,6 +55,64 @@ namespace BLL.FacadeLayer
                 }
             }
             return lsre;
+        }
+
+        public Boolean CreateNew(ServiceRequestEntity se)
+        {
+            try
+            {
+                ServiceRequest sr = new ServiceRequest()
+                {
+                    Feedback = se.Feedback,
+                    SRStatusID = se.SRStatusID,
+                    RequestedBy = se.RequestedBy,
+                    SRNo = se.SRNo,
+                    SRType = se.SRType,
+                    RequestDate = se.RequestDate,
+                    ShopName = se.ShopName,
+                    Remark = se.Remark,
+                    Email = se.Email,
+                    ContactNumber = se.ContactNumber
+                };
+                fe.ServiceRequest.Add(sr);
+                fe.SaveChanges();
+                return true;
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+        }
+
+        public Boolean UpdateRequisition(ServiceRequestEntity se)
+        {
+            try
+            {
+                var record = (from x in fe.ServiceRequest
+                              where x.SRNo == se.SRNo
+                              select x).SingleOrDefault();
+                record.RequestDate = se.RequestDate;
+                record.ShopName = se.ShopName;
+                record.Email = se.Email;
+                record.ContactNumber = se.ContactNumber;
+                fe.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
         }
     }
 }

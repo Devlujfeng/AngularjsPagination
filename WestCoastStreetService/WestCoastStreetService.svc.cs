@@ -14,7 +14,7 @@ namespace WestCoastStreetService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class WestCoastStreetService : IWestCoastStreetService
     {
-        
+        RequisitionFacade rf = new RequisitionFacade();
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -46,8 +46,26 @@ namespace WestCoastStreetService
         {
             int start = (index-1) * pageSize+1;
             int end = index * pageSize;
-            RequisitionFacade rf = new RequisitionFacade();
+            
             return rf.GetRequisitionByIndex(start,end);
+        }
+
+        public Boolean CreateNewRequisition(ServiceRequestEntity sre)
+        {
+            return rf.CreateNew(sre);
+        }
+        public void GetOptions()
+        {
+
+        }
+        private void BypassCrossDomain()
+        {
+            WebOperationContext.Current.OutgoingResponse.Headers.Add("Access-Control-Allow-Origin", "*");
+        }
+
+        public Boolean UpdateRequisition(ServiceRequestEntity sre)
+        {
+            return rf.UpdateRequisition(sre);
         }
     }
 }

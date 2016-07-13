@@ -41,8 +41,26 @@ namespace WestCoastStreetService
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "GetRequistion?pageIndex={index}&?pageSize={pageSize}",
         ResponseFormat = WebMessageFormat.Json)]
-
         List<ServiceRequestEntity> GetAllRequisition(int index, int pageSize);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "CreateNewRequisition",
+        ResponseFormat = WebMessageFormat.Json)]
+        Boolean CreateNewRequisition(ServiceRequestEntity se);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "UpdateRequisition",
+        ResponseFormat = WebMessageFormat.Json)]
+        Boolean UpdateRequisition(ServiceRequestEntity se);
+
+
+        [OperationContract]
+        [WebInvoke(Method = "OPTIONS", UriTemplate = "*")]
+        void GetOptions();
     }
 
 
