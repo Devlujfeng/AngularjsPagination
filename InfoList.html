@@ -31,6 +31,7 @@
   <td>{{record.ShopName}}</td>
   <td>{{record.Email}}</td>
   <td>{{record.ContactNumber}}</td>
+  <td type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" ng-click="bindDataEdit(this)">Edit</td>
 </tr>
 </table>
 <div class="text-center">
@@ -40,7 +41,50 @@
   <li><div class="PageNext" ng-click="NextPage()">+</div></li>
 </ul>
 </div>
+<button class="btn" ng-click="CreateNewRequisition()">post</button>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">InfoList</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label class="control-label">SRNo: {{editModel.SRNo}}</label>
+          </div>
+          <div class="form-group">
+            <label class="control-label">RequestDate:</label>
+            <input type="text" class="form-control" ng-model="editModel.RequestDate">
+          </div>
+          <div class="form-group">
+            <label class="control-label">ShopName:</label>
+            <input type="text" class="form-control"  ng-model="editModel.ShopName">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Email:</label>
+            <input type="text" class="form-control"  ng-model="editModel.Email">
+          </div>
+          <div class="form-group">
+            <label class="control-label">ContactNumber:</label>
+            <input type="text" class="form-control"  ng-model="editModel.ContactNumber">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <label ng-bind="status"></label>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Close</button>
+        <button class="btn btn-success" ng-click="EditRecord(this)">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="js/angular.js"></script>
+<script src="js/jquery.js"></script>
 <script src="js/InfoList.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>

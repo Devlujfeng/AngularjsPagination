@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+function ljf() {
+    // body...
+  }
+ljf.prototype.go = function () {
+  // body...
+return "lujfeng go";
+};
+
+ljf.prototype.fly = function () {
+  // body...
+  console.log("lujfeng fly");
+};
+var lujfeng = new ljf();
+lujfeng.fly();
+
+  </script>
+</head>
+<body>
+
+
+  <p id="demo"></p>
+
+  <script>
+  function Person(first, last, age, eye) {
+      this.firstName = first;
+      this.lastName = last;
+      this.age = age;
+      this.eyeColor = eye;
+  }
+  Person.prototype.name = function() {
+      return this.firstName + " " + this.lastName
+  };
+
+  var myFather = new Person("John", "Doe", 50, "blue");
+  document.getElementById("demo").innerHTML =
+  "My father is " + myFather.name();
+  </script>
+</body>
+</html>
