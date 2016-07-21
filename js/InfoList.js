@@ -9,6 +9,7 @@ $scope.pageContent = [];
 $scope.currentPage = 1;
 $scope.pageUnderIndex = [1,2,3,4,5];
 $scope.editModel = {};
+$scope.SRNo = "";
 
 //start function here
 $scope.bindDataEdit = function (html) {
@@ -18,7 +19,6 @@ $scope.editModel = item;
 };
 //FUnction to reach Service and fetch data by page Index
 $scope.GetListService = function(argument) {
-  console.log("1");
   RequisitionService.GetRequisitionByIndex($scope.pageIndex, $scope.pageSize).then(function(response){
   $scope.pageContent = response.data;
   });
@@ -81,6 +81,7 @@ $scope.CreateNewRequisition = function () {
 
 
 $scope.EditRecord = function () {
+  $scope.status = "updating...";
   RequisitionService.UpdateItem($scope.editModel).then(function(response){
   if(response.data){
   $scope.status = "successfully update";
@@ -90,7 +91,42 @@ $scope.EditRecord = function () {
 
 $scope.close = function (argument) {
   // body...
-$scope.status = "";
+  $scope.SRNo = "";
+  $scope.matchStatus = "";
+  $scope.status = "";
+};
+
+$scope.SRNoValidator = function (argument) {
+  // body...
+  console.log(argument.SRNo);
+  var regex = /^\d{6}-\d{6}$/;
+  if(!regex.test(argument.SRNo) || argument.SRNo =="" ){
+    $scope.matchStatus = "Please type in a right SRNo.";
+  }
+  else{
+    $scope.matchStatus = "Checking";
+    RequisitionService.GetSRbyId($scope.SRNo).then(function(response){
+      console.log(response);
+      if(response.data){
+      $scope.matchStatus = "Verified";
+      }
+      else{
+      $scope.matchStatus = "No Record found";
+      }
+    });
+  }
+};
+
+$scope.DeleteRecord = function (argument) {
+  // body...
+
+RequisitionService.DeleteRecord(argument.SRNo).then(function(response){
+if(response.data){
+$scope.matchStatus = "Successfully Deleted.";
+$scope.GetListService();
+}
+});
+
 };
 // function ended
 });
@@ -98,8 +134,24 @@ $scope.status = "";
 
 RequisitionModule.service("RequisitionService",function($http){
 // start function here
+this.DeleteRecord = function (serviceNo) {
+  // body...
+    var data = JSON.stringify(serviceNo);
+    var addr ="http://192.168.0.12/WestCoastStreetService.svc/DeleteRecord" ;
+    var request = $http.post(addr,data);
+    return request;
+};
+
+this.GetSRbyId = function (SRNo) {
+  // body...
+    var data = JSON.stringify(SRNo);
+    var addr = "http://192.168.0.12/WestCoastStreetService.svc/ValidateServiceRequestID";
+    var request = $http.post(addr,data);
+    return request;
+};
+
 this.GetRequisitionByIndex = function(pageIndex, pageSize){
-  var address = "http://192.168.0.11/WestCoastStreetService.svc/GetRequistion?pageIndex="+pageIndex+"&?pageSize="+pageSize+"";
+  var address = "http://192.168.0.12/WestCoastStreetService.svc/GetRequistion?pageIndex="+pageIndex+"&?pageSize="+pageSize+"";
   var request = $http.get(address);
    return request;
 };
@@ -119,14 +171,14 @@ this.CreateNewRequisition = function () {
    ContactNumber : "123456"
    };
   var data = JSON.stringify(value);
-  var address = "http://192.168.0.11/WestCoastStreetService.svc/CreateNewRequisition";
+  var address = "http://192.168.0.12/WestCoastStreetService.svc/CreateNewRequisition";
   var request = $http.post(address,data);
         return request;
 };
 this.UpdateItem = function (argument) {
   // body...
     var data = JSON.stringify(argument);
-  var address = "http://192.168.0.11/WestCoastStreetService.svc/UpdateRequisition";
+  var address = "http://192.168.0.12/WestCoastStreetService.svc/UpdateRequisition";
   var request = $http.post(address,data);
         return request;
 };
